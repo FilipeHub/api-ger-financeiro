@@ -1,0 +1,37 @@
+{
+  "name": "pokemons-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "test": "jest",
+    "docs": "apidoc -i ./ -e node_modules -o ./docs"
+  },
+  "dependencies": {
+    "api-doc": "^4.0.3",
+    "apidoc": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.12",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.1",
+    "supertest": "^4.0.2"
+  },
+  "apidoc": {
+    "name": "Challenge NodeJS - Chat",
+    "version": "1.0.0",
+    "description": "Represents a simple chat system",
+    "apidoc": {
+      "title": "Challenge NodeJS - Chat",
+      "url": "https://github.com/FilipeHub/"
+    }
+  }
+}
