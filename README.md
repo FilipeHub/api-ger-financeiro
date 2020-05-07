@@ -43,7 +43,6 @@ _or_
 $ npm run dev
 ```
 
-```
 
 ### Documentation
 
