@@ -1,30 +1,26 @@
-# Chat Challenge (Node.JS)
+# Gerenciador Financeiro (Node.JS)
 
-## About this project
+## Sobre
 
-This project represents the API of a Chat, where the user could:
-- Register himself 
-- Login
-- Enter in a chat room
-- Send and receive instant messages
+Este projeto representa a API de um gerenciador financeiro simples para distribuidores de sabonetes
 
 
 ## Getting Start
 
-### Prerequisites
+### Pré-requisitos
 
-To run this project in the development mode, you'll need to have a basic environment with NodeJS
+Este projeto pode ser executado em modo de desenvolvimento e é necessário o ambiente Node.JS instalado 
 
-### Installing
+### Executando
 
-**Cloning the Repository**
-
-```
-$ git clone https://github.com/FilipeHub/api-chat-challenge.git
+**Clonando o repositório**
 
 ```
+$ git clone https://github.com/FilipeHub/api-ger-financeiro.git
 
-**Installing dependencies**
+```
+
+**Instalando dependencias**
 
 ```
 $ yarn
@@ -35,7 +31,7 @@ _or_
 ```
 $ npm install
 ```
-### Running the Development environment
+### Executando em ambiente de desenvolvimento
 
 ```
 $ yarn dev
@@ -47,11 +43,13 @@ _or_
 $ npm run dev
 ```
 
+```
+
 ### Documentation
 
-You can se the documentation of the system's endpoints in the /docs/index.html file
+Você pode ver a documentação dos endpoints no arquivo /docs/index.html
 
-To generate new documentation files
+Para gerar novos arquivos de documentação
 
 ```
 $ yarn docs
@@ -61,7 +59,6 @@ $ yarn docs
 
 - [NodeJS](https://nodejs.org/en/) - Build the server
 - [express](https://expressjs.com/) - Router of the Application
-- [socket.io](https://socket.io/) - Real-time engine
 - [MongoDB](https://www.mongodb.com/) - Database
 - [mongoose](https://mongoosejs.com/) - Object Modeling + DB Connector
 - [nodemon](https://nodemon.io/) - Process Manager used in the development

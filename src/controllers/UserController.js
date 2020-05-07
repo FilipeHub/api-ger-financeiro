@@ -141,5 +141,4 @@ module.exports = {
             return res.status(400).send({ error : "User doesn't exists"});
         }
     }
-
 }

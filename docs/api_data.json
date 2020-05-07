@@ -90,10 +90,24 @@
   },
   {
     "type": "post",
-    "url": "/message",
-    "title": "Create a new message",
-    "name": "CreateMessage",
-    "group": "Messages",
+    "url": "/registro",
+    "title": "Create a new Registro",
+    "name": "CreateRegistro",
+    "description": "<p>This endpoint requires a authenticated user. See the Authentication session of this documentation</p>",
+    "group": "Registro",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>a Bearer token of the authorizaded user</p>"
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -101,18 +115,108 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "text",
-            "description": "<p>Message text</p>"
+            "field": "descricao",
+            "description": "<p>Registro descricao</p>"
           },
           {
             "group": "Parameter",
-            "type": "ObjectId",
+            "type": "String",
             "optional": false,
-            "field": "userId",
-            "description": "<p>User that sent the message</p>"
+            "field": "tipo",
+            "description": "<p>Registro tipo</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quantidade",
+            "description": "<p>Registro quantidade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "valor",
+            "description": "<p>Registro valor</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Registro data</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "JSON Body Example:",
+          "content": "{ \n  \"descricao\": \"Sabonete Dove\", \n  \"tipo\": \"Venda\", \n  \"quantidade\": 50, \n  \"valor\": 1.8,\n  \"data\": \"2020-04-19 10:18:24\"\n*  }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Registro id.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "descricao",
+            "description": "<p>Registro descricao</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tipo",
+            "description": "<p>Registro tipo</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "quantidade",
+            "description": "<p>Registro quantidade</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "valor",
+            "description": "<p>Registro valor</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Registro data</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Registro's owner.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n\n{\n  \"_id\": \"5eb1afe51aca765c80ca4e76\",\n  \"descricao\": \"Sabonete Dove\",\n  \"tipo\": \"Venda\",\n  \"quantidade\": 50,\n  \"valor\": 1.8,\n  \"data\": \"2020-04-19T13:18:24.000Z\",\n  \"user\": \"5eb14084e0c6ad42459e1fa0\",\n  \"createdAt\": \"2020-05-05T18:26:45.013Z\",\n  \"updatedAt\": \"2020-05-05T18:26:45.013Z\",\n  \"__v\": 0\n }",
+          "type": "json"
+        }
+      ]
     },
     "error": {
       "fields": {
@@ -120,38 +224,39 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CreateMessageFailed",
-            "description": "<p>an unexpected error occurs in the storage of the Message in the data base</p>"
+            "field": "CreateRegistroFailed",
+            "description": "<p>an unexpected error occurs in the storage of the Registro in the database</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-response",
-          "content": "HTTP/1.1 400 Error creating a new Message\n\n{\n   error: \"Save message failed\"\n}",
+          "content": "HTTP/1.1 400 Error creating a new Registro\n\n{\n   error: \"Error creating new Registro\"\n}",
           "type": "json"
         }
       ]
     },
     "version": "1.0.0",
-    "filename": "./src/controllers/MessageController.js",
-    "groupTitle": "Messages"
+    "filename": "./src/controllers/RegistroController.js",
+    "groupTitle": "Registro"
   },
   {
     "type": "get",
-    "url": "/messages/:page",
-    "title": "Returns all the messages",
-    "name": "GetMessages",
-    "group": "Messages",
-    "parameter": {
+    "url": "/registro",
+    "title": "Mostra todos os registros do usuário",
+    "name": "GetRegistro",
+    "description": "<p>This endpoint requires a authenticated user. See the Authentication session of this documentation</p>",
+    "group": "Registro",
+    "header": {
       "fields": {
-        "Parameter": [
+        "Header": [
           {
-            "group": "Parameter",
-            "type": "Number",
+            "group": "Header",
+            "type": "String",
             "optional": false,
-            "field": "page",
-            "description": "<p>Page of the pagination</p>"
+            "field": "token",
+            "description": "<p>a Bearer token of the authorizaded user</p>"
           }
         ]
       }
@@ -161,17 +266,17 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Message[]",
+            "type": "Object[]",
             "optional": false,
-            "field": "messages",
-            "description": "<p>Messages from database. (limited by the MESSAGES_PER_PAGE value of the .env file)</p>"
+            "field": "list",
+            "description": "<p>Id and name of the registro</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Successful Response:",
-          "content": "HTTP/1.1 200 OK\n\n      {\n       \"messages\": [\n           {\n           \"_id\": \"5e70236415102c507c5b181b\",\n           \"text\": \"how r u?\",\n           \"user\": {\n               \"_id\": \"5e6fe7bd07b5ba14e111f227\",\n               \"name\": \"User1\",\n               \"email\": \"user1@gmail.com\",\n               \"__v\": 0\n           }\n           },\n           {\n           \"_id\": \"5e702155ce7e194ac9a87cc2\",\n           \"text\": \"Hello\",\n           \"user\": {\n               \"_id\": \"5e6fe7f007b5ba14e111f229\",\n               \"name\": \"User3\",\n               \"email\": \"user3@gmail.com\",\n               \"__v\": 0\n           }\n           },\n           {\n           \"_id\": \"5e702120ce7e194ac9a87cc1\",\n           \"text\": \"Hi\",\n           \"user\": {\n               \"_id\": \"5e6fe7f007b5ba14e111f229\",\n               \"name\": \"User3\",\n               \"email\": \"user3@gmail.com\",\n               \"__v\": 0\n           }\n           }\n       ]\n       }",
+          "content": "HTTP/1.1 200 OK\n\n\n  [\n      {\n          \"_id\": \"5eb1a26ecc20e350002029b7\",\n          \"descricao\": \"Sabonete Dove\",\n          \"tipo\": \"Compra\",\n          \"quantidade\": 200,\n          \"valor\": 0.8,\n          \"data\": \"2020-04-13T11:18:30.000Z\",\n          \"user\": \"5eb14084e0c6ad42459e1fa0\",\n          \"createdAt\": \"2020-05-05T17:29:18.516Z\",\n          \"updatedAt\": \"2020-05-05T17:29:18.516Z\",\n          \"__v\": 0\n      },\n      {\n          \"_id\": \"5eb1add41cba2a5a817009ba\",\n          \"descricao\": \"Sabonete Dove\",\n          \"tipo\": \"Venda\",\n          \"quantidade\": 100,\n          \"valor\": 1.5,\n          \"data\": \"2020-04-13T21:18:30.000Z\",\n          \"user\": \"5eb14084e0c6ad42459e1fa0\",\n          \"createdAt\": \"2020-05-05T18:17:56.814Z\",\n          \"updatedAt\": \"2020-05-05T18:17:56.814Z\",\n          \"__v\": 0\n      },\n      {\n          \"_id\": \"5eb1afe51aca765c80ca4e76\",\n          \"descricao\": \"Sabonete Dove\",\n          \"tipo\": \"Venda\",\n          \"quantidade\": 25,\n          \"valor\": 1.8,\n          \"data\": \"2020-04-19T13:18:24.000Z\",\n          \"user\": \"5eb14084e0c6ad42459e1fa0\",\n          \"createdAt\": \"2020-05-05T18:26:45.013Z\",\n          \"updatedAt\": \"2020-05-06T01:14:17.597Z\",\n          \"__v\": 0\n      }\n  ]",
           "type": "json"
         }
       ]
@@ -182,22 +287,273 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "GetMessageFailed",
-            "description": "<p>an unexpected error occurs getting the Messages</p>"
+            "field": "GetRegistroFailed",
+            "description": "<p>an unexpected error occurs getting the list of all user's registro</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-response",
-          "content": "HTTP/1.1 400 Error Message not found\n\n{\n   error: \"Error getting the Messages\"\n}",
+          "content": "HTTP/1.1 400 Error getting the registro' list\n\n{\n   error: \"Error getting the registro\"\n}",
           "type": "json"
         }
       ]
     },
     "version": "1.0.0",
-    "filename": "./src/controllers/MessageController.js",
-    "groupTitle": "Messages"
+    "filename": "./src/controllers/RegistroController.js",
+    "groupTitle": "Registro"
+  },
+  {
+    "type": "put",
+    "url": "/registro/:id",
+    "title": "Update a Registro",
+    "name": "UpdateRegistro",
+    "description": "<p>This endpoint requires a authenticated user. See the Authentication session of this documentation</p>",
+    "group": "Registro",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>a Bearer token of the authorizaded user</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "descricao",
+            "description": "<p>Registro descricao</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tipo",
+            "description": "<p>Registro tipo</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quantidade",
+            "description": "<p>Registro quantidade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "valor",
+            "description": "<p>Registro valor</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Registro data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "JSON Body Example:",
+          "content": "{ \n  \"descricao\": \"Sabonete Dove\", \n  \"tipo\": \"Venda\", \n  \"quantidade\": 50, \n  \"valor\": 1.8,\n  \"data\": \"2020-04-19 10:18:24\"\n*  }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Registro id.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "descricao",
+            "description": "<p>Registro descricao</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tipo",
+            "description": "<p>Registro tipo</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "quantidade",
+            "description": "<p>Registro quantidade</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "valor",
+            "description": "<p>Registro valor</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Registro data</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Registro's owner.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n\n{\n  \"_id\": \"5eb1afe51aca765c80ca4e76\",\n  \"descricao\": \"Sabonete Dove\",\n  \"tipo\": \"Venda\",\n  \"quantidade\": 50,\n  \"valor\": 1.8,\n  \"data\": \"2020-04-19T13:18:24.000Z\",\n  \"user\": \"5eb14084e0c6ad42459e1fa0\",\n  \"createdAt\": \"2020-05-05T18:26:45.013Z\",\n  \"updatedAt\": \"2020-05-05T18:26:45.013Z\",\n  \"__v\": 0\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "the",
+            "description": "<p>registro doesn't exists in the user's account</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UpdateRegistroFailed",
+            "description": "<p>an unexpected error occurs updating the details of one user's registros</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-registro doesn't exists",
+          "content": "HTTP/1.1 400 Error: registro doesn't exists\n\n{\n   error: \"Doesn't exist this registro for this user\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-response",
+          "content": "HTTP/1.1 400 Error updating the attributes of one user's registros\n\n{\n   error: \"Error updating the registro\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "./src/controllers/RegistroController.js",
+    "groupTitle": "Registro"
+  },
+  {
+    "type": "delete",
+    "url": "/registro/:id",
+    "title": "Delete the registro",
+    "name": "DeleteRegistro",
+    "description": "<p>This endpoint requires a authenticated user. See the Authentication session of this documentation</p>",
+    "group": "Registros",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>a Bearer token of the authorizaded user</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>registro id, unique</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>success message.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n\n{\n   \"message\": \"The registro was successfuly removed.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "RegistroDoesNotExistsFailed",
+            "description": "<p>the registro doesn't exists in the user's account</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "DeleteRegistroFailed",
+            "description": "<p>an unexpected error occurs deleting one user's registro</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-registro doesn't exists",
+          "content": "HTTP/1.1 400 Error: registro doesn't exists\n\n{\n   error: \"Doesn't exist this registro for this user\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-response",
+          "content": "HTTP/1.1 400 Error deleting the user's registro\n\n{\n   error: \"Error deleting the registro\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "./src/controllers/RegistroController.js",
+    "groupTitle": "Registros"
   },
   {
     "type": "post",
@@ -560,8 +916,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "./docs/main.js",
-    "group": "_home_filipe_Projects_chat_challenge_api_docs_main_js",
-    "groupTitle": "_home_filipe_Projects_chat_challenge_api_docs_main_js",
+    "group": "_home_filipe_Projects_ger_financeiro_api_docs_main_js",
+    "groupTitle": "_home_filipe_Projects_ger_financeiro_api_docs_main_js",
     "name": ""
   }
 ]
